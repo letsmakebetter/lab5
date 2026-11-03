@@ -15,14 +15,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <header className="site-header">
-          <Link className="brand" href="/">Task Board<span>Make room for what matters.</span></Link>
-          <nav aria-label="Main navigation"><Link href="/">Home</Link><Link href="/tasks">All tasks</Link></nav>
-        </header>
+        <nav><Link href="/">Home</Link> | <Link href="/tasks">All tasks</Link></nav>
         {children}
-        <footer className="site-footer">
-          <span>Keep your next step simple.</span>
-          <div><a href="https://example.com/sponsor" rel="sponsored">Our sponsor</a><span aria-hidden="true"> | </span><a href="https://example.org/planning-tips" rel="ugc">Tip from a user</a></div>
+        <footer>
+          <a href="https://example.com/sponsor" rel="sponsored">Our sponsor</a>
+          {" | "}
+          <a href="https://example.org/planning-tips" rel="ugc">Tip from a user</a>
         </footer>
       </body>
     </html>

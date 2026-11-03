@@ -31,7 +31,6 @@ export default function TaskBoard({ initialTasks }: { initialTasks: Task[] }) {
   return (
     <div className="board">
       <div className="board-toolbar">
-        <p className="muted">{tasks.filter((task) => !task.done).length} open | {tasks.filter((task) => task.done).length} done</p>
         <FilterBar filter={filter} onChange={setFilter} />
       </div>
       {tasks.length === 0 ? <p className="notice">No tasks yet. Add your first one below.</p> : <TaskList tasks={filteredTasks} onToggle={toggleTask} />}
