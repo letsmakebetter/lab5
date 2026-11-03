@@ -9,9 +9,10 @@ type TaskRouteProps = { params: Promise<{ id: string }> };
 export async function generateMetadata({ params }: TaskRouteProps): Promise<Metadata> {
   const { id } = await params;
   const parsed = z.coerce.number().int().positive().safeParse(id);
-  if (!parsed.success) return { title: "Task not found | Task Board" };
+  if (!parsed.success) notFound();
   const task = await getTask(parsed.data);
-  return { title: task ? `${task.title} | Task Board` : "Task not found | Task Board" };
+  if (!task) notFound();
+  return { title: `${task.title} | Task Board` };
 }
 
 export default async function TaskPage({ params }: TaskRouteProps) {

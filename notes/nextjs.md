@@ -15,7 +15,7 @@
 
 The root layout and tasks layout wrap `/tasks/1`. The tasks layout stays when moving from `/tasks` to `/tasks/1`. `lang="en"` tells screen readers which language rules to use.
 
-The detail page logs the id. It is a string. The log should appear in the dev-server terminal because the page is a Server Component. I have not checked it in a running browser.
+I checked `/tasks/1`: the dev-server terminal logs `id is a string` with value `1`.
 
 ## Strand 2: Components
 
@@ -37,14 +37,10 @@ Only `TaskBoard.tsx` and `error.tsx` need `"use client"`. The first boundary mis
 | Drag-and-drop board | Not the main need | Yes | Browser interaction |
 | About page | Yes | No | Ahead of time |
 
-`/tasks` has a title, description and canonical link. `sponsored` marks the paid link; `ugc` marks the user-submitted link. `/tasks` is set to render on every request. The build route table and its legend are not recorded because the build could not run.
+`/tasks` has a title, description and canonical link. `sponsored` marks the paid link; `ugc` marks the user-submitted link. `/tasks` is set to render on every request. Build routes: `○ /`, `○ /_not-found`, `ƒ /tasks`, `ƒ /tasks/[id]`. `○` is static; `ƒ` is dynamic.
 
-## Checks left
+## Checks
 
-- Compare Link with `<a>` in Network; check `/nope` returns 404.
-- Check page source and Elements for metadata, `lang` and footer links.
-- Compare view-source with the Lab 4 Vite app; that project was not in this folder.
-- Run lint and build and copy the route table here.
-- Compare with the temporary CSR page using View Source and Lighthouse, then delete that page.
+`npm run lint` and `npm run build` pass. `/`, `/tasks`, and `/tasks/1` return 200; `/nope` returns 404. `/tasks/abc` shows the not-found page but streams with status 200 because the tasks loading boundary starts the response first.
 
-The dependencies are listed in `package.json` and `package-lock.json`, but I could not install them or run the checks. Tasks added in the page are lost on refresh because the API is a mock.
+Still to check in a browser: Link versus `<a>` in Network, page source/Elements, the Lab 4 Vite comparison, and the temporary CSR/Lighthouse comparison. Added tasks are lost on refresh because the API is a mock.
