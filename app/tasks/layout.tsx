@@ -1,7 +1,6 @@
-export default function TasksLayout({ children }: { children: React.ReactNode }) {
+﻿export default function TasksLayout({ children }: { children: React.ReactNode }) {
   return (
-    <section className="page-shell">
-      <p className="eyebrow">Your workspace</p>
+    <section>
       <h1>Your tasks</h1>
       {children}
     </section>
